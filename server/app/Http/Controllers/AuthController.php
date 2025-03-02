@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -29,31 +30,101 @@ class AuthController extends Controller
             'phone_number' => $request->phone_number,
         ]);
 
-        return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
+        // Automatically log in the user after registration
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'User registered successfully',
+            'token' => $token,
+            'user' => $user,
+        ], 201);
     }
 
-   
+
     public function login(Request $request)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('authToken')->plainTextToken;
+            return response()->json(['token' => $token, 'user' => $user], 200);
         }
 
-        $user = Auth::user();
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json(['message' => 'Login successful', 'token' => $token, 'user' => $user]);
+        return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
-  
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Logged out successfully']);
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(['message' => 'Logged out'], 200);
     }
+
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
+    }
+
+    
+
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     // if (!Auth::attempt($request->only('email', 'password'))) {
+    //     //     return response()->json(['message' => 'Invalid credentials'], 401);
+    //     // }
+
+    //     // $user = Auth::user();
+    //     // $token = $user->createToken('auth_token')->plainTextToken;
+
+    //     // return response()->json([
+    //     //     'message' => 'Login successful',
+    //     //     'token' => $token,
+    //     //     'user' => $user,
+    //     // ]);
+
+        
+    //     if (!$token = auth()->attempt($credentials)) {
+    //         return response()->json(['error' => 'Unauthorized'], 401);
+    //     }
+
+    //     return $this->res($token);
+    // }
+
+    // public function checkAuth()
+    // {
+    //     if (Auth::guard('sanctum')->check()) {
+    //         $user = Auth::guard('sanctum')->user();
+    //         return response()->json([
+    //             'authenticated' => true,
+    //             'user' => $user,
+    //         ]);
+    //     } else {
+    //         return response()->json(['authenticated' => false], 401);
+    //     }
+    // }
+
+    // public function logout(Request $request)
+    // {
+
+    //     auth()->logout();
+    //     return response()->json(['message' => 'Successfully logged out']);
+
+    //     // $user = Auth::guard('sanctum')->user();
+
+    //     // if ($user) {
+    //     //     $user->tokens()->delete(); // Revoke all tokens for the user
+    //     //     Log::info('User logged out', ['user_id' => $user->id]); // Log the logout event
+    //     //     return response()->json(['message' => 'Logged out successfully']);
+    //     // }
+
+    //     // return response()->json(['message' => 'User not authenticated'], 401);
+    // }
 }
