@@ -15,7 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->enum('role', ['admin', 'user'])->default('user');
+            $table->enum('role', [
+            'admin', 
+            'guest', 
+            'Housekeeper', 
+            'restaurate', 
+            'resposionist', 
+            'Fitness', 
+            'Parking'
+            ])->default('guest');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone_number')->nullable();

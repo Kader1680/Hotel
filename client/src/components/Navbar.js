@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext'; // Import useAuth
+import { Link, Links } from 'react-router';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +34,10 @@ const Navbar = () => {
                     </div>
                     <div className={`${isOpen ? 'block' : 'hidden'} lg:flex lg:items-center`}> 
                         <div className="flex flex-col lg:flex-row lg:items-center">
-                            <a href="/" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
-                            <a href="/rooms" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Rooms</a>
-                            <a href="/bookings" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Booking</a>
-                            <a href="/orders" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Order</a>
+                            <Link to="/" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</Link>
+                            <Link to="/rooms" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Rooms</Link>
+                            <Link to="/bookings" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Booking</Link>
+                            <Link to="/orders" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Order</Link>
                         </div>
                        
                         {user ? ( // Check if user is authenticated
@@ -48,7 +49,7 @@ const Navbar = () => {
                              
                             </button>
                         ) : (
-                            <a href="/login" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</a>
+                            <Link to="/login" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</Link>
                         )}
                     </div>
                 </div>

@@ -12,7 +12,7 @@ function Dashboard() {
       <nav class="mt-4">
         <a href="/admin" class="block py-2 px-4 hover:bg-blue-700">Admin Panel</a>
         <a href="/admin/add-room" class="block py-2 px-4 hover:bg-blue-700">Rooms Actions</a>
-        <a href="#" class="block py-2 px-4 hover:bg-blue-700">Settings</a>
+        <a href="/admin/user-management" class="block py-2 px-4 hover:bg-blue-700">User Management</a>
         <a href="#" class="block py-2 px-4 hover:bg-blue-700">Profile</a>
       </nav>
     </aside>

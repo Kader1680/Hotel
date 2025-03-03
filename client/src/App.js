@@ -80,20 +80,31 @@ import AddRoom from "./pages/admin/addRoom";
 import Home from './pages/Home';
 import Order from './pages/core/Order';
 import Booking from './pages/core/Booking';
+import SelectPayment from './pages/payement/selectPayement';
+import UserManagement from './pages/admin/UserManagement';
+import Roomdetail from './pages/core/roomDetail';
+// import Roomdetail from './pages/core/Roomdetail';
+
 function App() {
   return (
     <AuthProvider> {/* Wrap with AuthProvider */}
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/Select-payment" element={<SelectPayment />} />
           <Route path="/rooms" element={<Rooms />} />
+          <Route path="/" element={<Roomdetail/>} />
           <Route path="/orders" element={<Order />} />
           <Route path="/bookings" element={<Booking />} />
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/add-room" element={<AddRoom />} />
+          <Route path="/admin/user-management" element={<UserManagement />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          
+          
+          
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
