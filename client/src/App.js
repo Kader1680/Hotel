@@ -78,6 +78,8 @@ import Rooms from "./pages/core/Rooms";
 import Dashboard from "./pages/admin/dashboard";
 import AddRoom from "./pages/admin/addRoom";
 import Home from './pages/Home';
+import Order from './pages/core/Order';
+import Booking from './pages/core/Booking';
 function App() {
   return (
     <AuthProvider> {/* Wrap with AuthProvider */}
@@ -86,6 +88,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/rooms" element={<Rooms />} />
+          <Route path="/orders" element={<Order />} />
+          <Route path="/bookings" element={<Booking />} />
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/add-room" element={<AddRoom />} />
           <Route path="/register" element={<Register />} />

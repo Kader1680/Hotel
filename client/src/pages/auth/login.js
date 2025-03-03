@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     try {
         await login(email, password); 
-        navigate('/');  
+        navigate('/rooms');  
     } catch (error) {
         console.error('Login failed:', error);
     }
