@@ -94,7 +94,7 @@ function App() {
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/Select-payment" element={<SelectPayment />} />
           <Route path="/rooms" element={<Rooms />} />
-          <Route path="/" element={<Roomdetail/>} />
+          <Route path="/room/:id" element={<Roomdetail/>} />
           <Route path="/orders" element={<Order />} />
           <Route path="/bookings" element={<Booking />} />
           <Route path="/admin" element={<Dashboard />} />

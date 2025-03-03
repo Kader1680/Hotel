@@ -24,6 +24,8 @@ const Rooms = () => {
   }, []);
 
 
+ 
+
   // const handleBookNow = async (roomId) => {
 
   //   // if (!user) {
@@ -96,6 +98,13 @@ const Rooms = () => {
                   >
                     Book Now
                   </button> */}
+
+                  <button
+                    className="mt-3 w-full px-4 py-2 text-white bg-red-700 rounded-lg hover:bg-white border-2 hover:text-[#FEA116] hover:border-[#FEA116] transition"
+                    onClick={() => navigate(`/room/${room.id}`)}
+                  >
+                    View Room
+                  </button>
                 </div>
               </div>
             );

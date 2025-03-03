@@ -25,26 +25,7 @@ const Booking = () => {
   return (
     <div className="container mx-auto py-10 px-4">
       <h2 className="text-3xl font-semibold text-center mb-6">My Bookings</h2>
-      <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
-        <div>
-          <label className="block mb-2">Check-in Date:</label>
-          <input
-            type="date"
-            className="px-3 py-2 border rounded-md"
-            value={checkIn}
-            onChange={(e) => setCheckIn(e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="block mb-2">Check-out Date:</label>
-          <input
-            type="date"
-            className="px-3 py-2 border rounded-md"
-            value={checkOut}
-            onChange={(e) => setCheckOut(e.target.value)}
-          />
-        </div>
-      </div>
+      
       <div className="flex flex-wrap justify-center gap-4">
         {bookings.filter(booking => user && booking.id_user === user.id).map((booking) => (
           <div key={booking.id} className="bg-white shadow-md rounded-lg overflow-hidden w-64 p-4">
