@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext'; // Import useAuth
+import React, { use, useState } from 'react';
+import { useAuth } from '../context/AuthContext';  
 import { Link, Links } from 'react-router';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { user, logout } = useAuth(); // Use the useAuth hook
+    const { user, logout } = useAuth(); 
+
+    // console.log(user.first_name)
 
     return (
         <nav className="relative bg-white shadow dark:bg-gray-800">
@@ -37,7 +39,20 @@ const Navbar = () => {
                             <Link to="/" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</Link>
                             <Link to="/rooms" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Rooms</Link>
                             <Link to="/bookings" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Booking</Link>
-                            <Link to="/orders" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Order</Link>
+                      
+                            <Link to="/admin" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</Link>
+                      
+                      
+                        {/* {
+                            user && user.first_name === "pop" ? (
+                                
+                            <Link to="/admin" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</Link>
+
+
+                            ) :  <Link to="/profile" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">{user.first_name}</Link>
+
+                        }
+                     */}
                         </div>
                        
                         {user ? ( // Check if user is authenticated

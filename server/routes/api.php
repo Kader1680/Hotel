@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,6 @@ Route::post('/admin/add-room', [AdminController::class, 'addRoom']);
 Route::get('/rooms', [HomeController::class, 'index']);
 Route::get('/room/{id}', [RoomController::class, 'show']);
 
-
 Route::prefix('bookings')->group(function () {
     Route::post('/', [BookingController::class, 'store']); 
     Route::get('/', [BookingController::class, 'index']);  
@@ -36,3 +36,6 @@ Route::prefix('bookings')->group(function () {
     Route::put('/{id}', [BookingController::class, 'update']);  
     Route::delete('/{id}', [BookingController::class, 'destroy']);  
 });
+
+
+Route::post('/select-payment', [PaymentController::class, 'store']);
