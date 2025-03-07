@@ -47,6 +47,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('authToken')->plainTextToken;
@@ -55,6 +56,22 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
+
+
+    protected function authenticated(Request $request, $user)
+    {
+    if ($user->role == 'admin') {
+        return redirect('/admin-dashboard');
+    } elseif ($user->role == 'receptionist') {
+        return redirect('/receptionist-dashboard');
+    } elseif ($user->role == 'food_manager') {
+        return redirect('/food-manager-dashboard');
+    } elseif ($user->role == 'housekeeper') {
+        return redirect('/housekeeping-dashboard');
+    } else {
+        return redirect('/guest-dashboard');
+    }
+}
 
     public function logout(Request $request)
     {

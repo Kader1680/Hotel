@@ -3,8 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FoodManagerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +26,8 @@ Route::post('/login', [AuthController::class, 'login']);
 // });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware("auth:sanctum");
-Route::post('/admin/add-room', [AdminController::class, 'addRoom']);
+
+Route::post('/admin/add-room', [AdminController::class, 'addRoom'])->middleware("admin");;
 Route::post('/admin/user-management', [AdminController::class, 'addEmployer']);
 
 Route::get('/admin/user-management/all-employers', [AdminController::class, 'getAllEmployer']);
@@ -48,3 +51,11 @@ Route::post('/select-payment', [PaymentController::class, 'store']);
 route::middleware('auth:sanctum', 'admin')->group(function (){
     Route::get('/admin', [AdminController::class, 'index']);
 });
+
+
+Route::get('/receptionist', [ReceptionistController::class, 'index'])->middleware('role:receptionist');
+Route::get('/food-manager', [FoodManagerController::class, 'index'])->middleware('role:food_manager');
+
+
+
+
