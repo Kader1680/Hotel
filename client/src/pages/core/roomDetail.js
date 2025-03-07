@@ -13,6 +13,8 @@ function Roomdetail() {
 
   const { user } = useAuth();  
 
+  const idAuth = user?.id;
+  console.log(idAuth)
   const navigate = useNavigate()
 
   let {id}  = useParams();
@@ -37,10 +39,12 @@ function Roomdetail() {
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/bookings", {
 
-          id_user: user.id,  
+          id_user: idAuth,  
           id_room: RoomId,
           checkin: new Date().toISOString().split("T")[0],
           checkout: new Date(Date.now() + 86400000 * 2).toISOString().split("T")[0],
+          total_price : 50.99,
+          status : 'pending',
       }, )
 
       if (response.status == 201) {

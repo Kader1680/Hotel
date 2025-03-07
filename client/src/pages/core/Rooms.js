@@ -7,6 +7,8 @@ const Rooms = () => {
   const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
   const { user }= useAuth();  
+  const idAuth = user?.id;
+  console.log(idAuth)
   // console.log(typeof user);
   // console.log( user.id);
   useEffect(() => {
@@ -26,41 +28,41 @@ const Rooms = () => {
 
  
 
-  // const handleBookNow = async (roomId) => {
+  const handleBookNow = async (roomId) => {
 
-  //   // if (!user) {
-  //   //   alert("Please log in to book a room.");
-  //   //   navigate("/login");
-  //   //   return;
-  //   // }
+    if (!user) {
+      alert("Please log in to book a room.");
+      navigate("/login");
+      return;
+    }
 
-  //   try {
+    try {
  
 
-  //     const response = await axios.post(
-  //       "http://127.0.0.1:8000/api/bookings",
-  //       {
-  //         id_user: 3, // Dynamically setting user ID ==> user.id
-  //         id_room: roomId,
-  //         checkin: new Date().toISOString().split("T")[0],
-  //         checkout: new Date(Date.now() + 86400000 * 2).toISOString().split("T")[0],
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //         },
-  //       }
-  //     );
+    const response = await axios.post(
+        "http://127.0.0.1:8000/api/bookings",
+        {
+          id_user: idAuth, 
+          id_room: roomId,
+          checkin: new Date().toISOString().split("T")[0],
+          checkout: new Date(Date.now() + 86400000 * 2).toISOString().split("T")[0],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
-  //     if (response.status === 201) {
-  //       alert("Room booked successfully!");
-  //       navigate("/bookings");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error booking room:", error);
-  //     alert("Failed to book the room. Please try again.");
-  //   }
-  // };
+      if (response.status === 201) {
+        alert("Room booked successfully!");
+        navigate("/bookings");
+      }
+    } catch (error) {
+      console.error("Error booking room:", error);
+      alert("Failed to book the room. Please try again.");
+    }
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -105,6 +107,20 @@ const Rooms = () => {
                   >
                     View Room
                   </button>
+                  
+                  {
+                    idAuth ? (
+                      <button
+                      className="mt-3 w-full px-4 py-2 bg-blue-900 text-white border-2 border-blue-950 rounded-lg hover:text-white transition"
+                      onClick={() => handleBookNow(room.id)}
+                    >
+                      Book Now
+                     </button>
+                    ) : (
+                      <div className="mt-3 w-full px-4 py-2 text-black bg-gray-300 rounded-lg hover:bg-white border-2 hover:text-[#FEA116] hover:border-[#FEA116] transition">please register or login to book room</div>
+                    )
+                  }
+                 
                 </div>
               </div>
             );

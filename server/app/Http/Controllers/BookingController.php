@@ -14,6 +14,8 @@ class BookingController extends Controller
             'id_room' => 'required|exists:rooms,id',
             'checkin' => 'required|date',
             'checkout' => 'required|date|after:checkin',
+            'total_price' => 'required|required',
+            'status' => 'required|string'
         ]);
 
         $booking = Booking::create($request->all());

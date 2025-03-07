@@ -5,6 +5,12 @@ import { Link, Links } from 'react-router';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useAuth(); 
+    const isAuth = user?.id === 0;
+    const nameAuth = user?.first_name;
+    console.log(nameAuth)
+    console.log(isAuth?.id === 0)
+    const isAdmin = user?.role === 'admin';
+    const isRespsioniste = user?.role === 'Receptionist';
 
     // console.log(user.first_name)
 
@@ -39,23 +45,39 @@ const Navbar = () => {
                             <Link to="/" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</Link>
                             <Link to="/rooms" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Rooms</Link>
                             <Link to="/bookings" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Booking</Link>
-                      
-                            <Link to="/admin" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</Link>
-                      
-                      
-                        {/* {
-                            user && user.first_name === "pop" ? (
+                        {
+                            isRespsioniste ? (
+                                
+                            <div>
+                                  <Link to="/respsioniste/add-guest" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">New Guest</Link>
+                                <Link to="/respsioniste/all-guest" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">All Guest</Link>
+                                <Link to="/respsioniste/booking-guest" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Resvation</Link>
+
+
+                            </div>
+                            ) : null
+
+                        }
+
+                          
+                        {
+                            isAdmin ? (
                                 
                             <Link to="/admin" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</Link>
 
 
-                            ) :  <Link to="/profile" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">{user.first_name}</Link>
+                            ) : null
 
                         }
-                     */}
+                    
                         </div>
                        
                         {user ? ( // Check if user is authenticated
+                           <div>
+                           
+
+                            <Link to="/profile" className="px-3 py-2 mx-3 text-orange-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">{nameAuth}</Link>
+                           
                             <button 
                                 onClick={logout} 
                                 className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -63,6 +85,7 @@ const Navbar = () => {
                                 Logout
                              
                             </button>
+                           </div>
                         ) : (
                             <Link to="/login" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</Link>
                         )}

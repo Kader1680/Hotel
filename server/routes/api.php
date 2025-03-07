@@ -32,6 +32,10 @@ Route::post('/admin/user-management', [AdminController::class, 'addEmployer']);
 
 Route::get('/admin/user-management/all-employers', [AdminController::class, 'getAllEmployer']);
  
+Route::post('/respsioniste/add-guest', [ReceptionistController::class, 'registerGuest']);
+Route::get('/respsioniste/all-guest', [ReceptionistController::class, 'getAllGuests']);
+
+
 
 Route::get('/rooms', [HomeController::class, 'index']);
 Route::get('/room/{id}', [RoomController::class, 'show']);

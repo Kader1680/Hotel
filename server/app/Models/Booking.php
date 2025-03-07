@@ -14,6 +14,8 @@ class Booking extends Model
         'id_room',
         'checkin',
         'checkout',
+        'total_price',
+        'status'
     ];
 
     // Define the relationship with the User model
