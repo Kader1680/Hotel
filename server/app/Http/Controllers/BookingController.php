@@ -24,7 +24,7 @@ class BookingController extends Controller
         ], 201);
     }
 
-    // Get all bookings
+   
     public function index()
     {
         $bookings = Booking::with(['user', 'room'])->get();
@@ -32,7 +32,7 @@ class BookingController extends Controller
         return response()->json($bookings);
     }
 
-    // Get a specific booking by ID
+   
     public function show($id)
     {
         $booking = Booking::with(['user', 'room'])->find($id);
@@ -43,8 +43,8 @@ class BookingController extends Controller
 
         return response()->json($booking);
     }
+ 
 
-    // Update a booking
     public function update(Request $request, $id)
     {
         $booking = Booking::find($id);
@@ -68,7 +68,7 @@ class BookingController extends Controller
         ]);
     }
 
-    // Delete a booking
+     
     public function destroy($id)
     {
         $booking = Booking::find($id);

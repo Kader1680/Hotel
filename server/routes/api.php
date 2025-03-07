@@ -25,7 +25,11 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware("auth:sanctum");
 Route::post('/admin/add-room', [AdminController::class, 'addRoom']);
+Route::post('/admin/user-management', [AdminController::class, 'addEmployer']);
+
+Route::get('/admin/user-management/all-employers', [AdminController::class, 'getAllEmployer']);
  
+
 Route::get('/rooms', [HomeController::class, 'index']);
 Route::get('/room/{id}', [RoomController::class, 'show']);
 
@@ -39,3 +43,8 @@ Route::prefix('bookings')->group(function () {
 
 
 Route::post('/select-payment', [PaymentController::class, 'store']);
+
+
+route::middleware('auth:sanctum', 'admin')->group(function (){
+    Route::get('/admin', [AdminController::class, 'index']);
+});

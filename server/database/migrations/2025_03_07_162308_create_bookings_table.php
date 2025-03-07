@@ -18,8 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('id_room'); 
             $table->date('checkin');  
             $table->date('checkout');  
+            $table->decimal('total_price', 10, 2); 
+            $table->string('status')->default('pending');
+     
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_room')->references('id')->on('rooms')->onDelete('cascade');
+            
+   
             $table->timestamps();
         });
     }

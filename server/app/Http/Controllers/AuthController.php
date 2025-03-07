@@ -15,10 +15,9 @@ class AuthController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'role' => 'required|in:admin,user',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-            'phone_number' => 'nullable|digits_between:8,15',
+            'password' => 'required|min:4',
+            'phone_number' => 'nullable|digits_between:2,15',
         ]);
 
         $user = User::create([
