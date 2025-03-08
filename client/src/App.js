@@ -23,6 +23,7 @@ import ChooseRoom from './pages/respsioniste/chooseRoom';
  
 // import Bookingres from './pages/respsioniste/Booking';
 import Bookingrecepsionist from './pages/respsioniste/Bookingrecepsionist';
+import AllBookings from './pages/respsioniste/allBookingGuest';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/respsioniste/add-guest" element={<AddGuest />} />
           <Route path="/respsioniste/all-guest" element={<AllGuest />} />
           <Route path="/respsioniste/choose-room" element={<ChooseRoom />} />
+          <Route path="/respsioniste/bookings" element={<AllBookings />} />
 
           <Route path="/respsioniste/choose-room/:id" element={<Bookingrecepsionist />} />
           
