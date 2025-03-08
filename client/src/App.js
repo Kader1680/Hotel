@@ -18,8 +18,11 @@ import Roomdetail from './pages/core/roomDetail';
 // import Respsioniste from './pages/respsioniste/Respsioniste';
 import AddGuest from './pages/respsioniste/addGuest';
 import AllGuest from './pages/respsioniste/allGuest';
-import BookingGuest from './pages/respsioniste/bookingGuest';
-// import Roomdetail from './pages/core/Roomdetail';
+import ChooseRoom from './pages/respsioniste/chooseRoom';
+ 
+ 
+// import Bookingres from './pages/respsioniste/Booking';
+import Bookingrecepsionist from './pages/respsioniste/Bookingrecepsionist';
 
 function App() {
   return (
@@ -33,7 +36,9 @@ function App() {
           {/* <Route path="/respsioniste" element={<Respsioniste />} /> */}
           <Route path="/respsioniste/add-guest" element={<AddGuest />} />
           <Route path="/respsioniste/all-guest" element={<AllGuest />} />
-          <Route path="/respsioniste/booking-guest" element={<BookingGuest />} />
+          <Route path="/respsioniste/choose-room" element={<ChooseRoom />} />
+
+          <Route path="/respsioniste/choose-room/:id" element={<Bookingrecepsionist />} />
           
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/room/:id" element={<Roomdetail/>} />

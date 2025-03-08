@@ -49,9 +49,10 @@ const Navbar = () => {
                             isRespsioniste ? (
                                 
                             <div>
-                                  <Link to="/respsioniste/add-guest" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">New Guest</Link>
+                                <Link to="/respsioniste/add-guest" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">New Guest</Link>
                                 <Link to="/respsioniste/all-guest" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">All Guest</Link>
                                 <Link to="/respsioniste/booking-guest" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Resvation</Link>
+                                <Link to="/respsioniste/view-booking" className="px-3 py-2 mx-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">View Booking Guest</Link>
 
 
                             </div>

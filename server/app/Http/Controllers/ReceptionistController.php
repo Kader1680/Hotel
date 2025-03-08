@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,10 +38,38 @@ class ReceptionistController extends Controller
         ], 201);
     }
 
+    // public function getAllGuests($id)
+    // {
+    //     $guests = User::where('role', 'guest')->get();
+
+    //     return response()->json($guests);
+    // }
+
+
     public function getAllGuests()
     {
         $guests = User::where('role', 'guest')->get();
 
         return response()->json($guests);
     }
+
+    public function addBooking(Request $request)
+    {
+        $request->validate([
+            'id_user' => 'required|exists:users,id',
+            'id_room' => 'required|exists:rooms,id',
+            'checkin' => 'required|date',
+            'checkout' => 'required|date|after:checkin',
+            'total_price' => 'required|required',
+            'status' => 'required|string'
+        ]);
+
+        $booking = Booking::create($request->all());
+
+        return response()->json([
+            'message' => 'Booking created successfully!',
+            'booking' => $booking,
+        ], 201);
+    }
+
 }

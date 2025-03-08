@@ -35,6 +35,9 @@ Route::get('/admin/user-management/all-employers', [AdminController::class, 'get
 Route::post('/respsioniste/add-guest', [ReceptionistController::class, 'registerGuest']);
 Route::get('/respsioniste/all-guest', [ReceptionistController::class, 'getAllGuests']);
 
+Route::post('/respsioniste/booking-guest', [ReceptionistController::class, 'addBooking']);
+// Route::get('/respsioniste/choose-room/{id}', [ReceptionistController::class, 'show']);
+
 
 
 Route::get('/rooms', [HomeController::class, 'index']);

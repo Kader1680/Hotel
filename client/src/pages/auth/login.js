@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
 // 
 const Login = () => {
-  // const navigate = useNavigate();
   const [email, setEmail] = useState('');
   
   const [password, setPassword] = useState('');
-  
+  const [alertMessage, setalertMessage] = useState("")
   const { login } = useAuth();
 
   const navigate = useNavigate(); 
@@ -15,9 +14,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await login(email, password); 
-        navigate('/rooms');  
+        if (true) {
+          await login(email, password)
+          navigate('/rooms');  
+        }
+        setalertMessage("Email or Password Invalid")
     } catch (error) {
+       
+        
         console.error('Login failed:', error);
     }
 };
@@ -37,16 +41,16 @@ const Login = () => {
             Login To Mario
           </h3>
 
-          {/* {alterMessage && (
+          {alertMessage && (
             <div className="mt-4 p-2 bg-red-600 text-white text-center rounded">
-              {alterMessage}
+              {alertMessage}
             </div>
-          )} */}
+          )}
 
           <form onSubmit={handleSubmit}>
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 text-white placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 type="email"
                                 placeholder="Email"
                                 value={email}
@@ -57,7 +61,7 @@ const Login = () => {
 
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 text-white placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 type="password"
                                 placeholder="Password"
                                 value={password}
